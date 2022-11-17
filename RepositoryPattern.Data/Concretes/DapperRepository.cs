@@ -27,7 +27,7 @@ namespace RepositoryPattern.Data.Concretes
             {
                 con.Open();
                 return con.Query<T>(
-                        $"Select * FROM {((TableAttribute)typeof(T).GetCustomAttribute(typeof(TableAttribute))).Name} Where IsDeleted=0")
+                        $"Select * FROM {GetTableNameFromEntity()} Where IsDeleted=0")
                     .ToList();
             }
         }
@@ -42,7 +42,7 @@ namespace RepositoryPattern.Data.Concretes
             {
                 con.Open();
                 return con.Query<T>(
-                        $"Select * FROM {((TableAttribute)typeof(T).GetCustomAttribute(typeof(TableAttribute))).Name} Where IsDeleted=0 and Id={id}")
+                        $"Select * FROM {GetTableNameFromEntity()} Where IsDeleted=0 and Id={id}")
                     .FirstOrDefault();
             }
         }
